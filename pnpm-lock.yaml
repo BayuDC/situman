@@ -5,6 +5,7 @@ specifiers:
   daisyui: ^2.51.3
   ejs: ^3.1.8
   express: ^4.18.2
+  express-basic-auth: ^1.2.1
   morgan: ^1.10.0
   nodemon: ^2.0.20
   postcss: ^8.4.21
@@ -14,6 +15,7 @@ specifiers:
 dependencies:
   ejs: 3.1.8
   express: 4.18.2
+  express-basic-auth: 1.2.1
   morgan: 1.10.0
   redis: 4.6.5
 
@@ -449,6 +451,12 @@ packages:
   /etag/1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /express-basic-auth/1.2.1:
+    resolution: {integrity: sha512-L6YQ1wQ/mNjVLAmK3AG1RK6VkokA1BIY6wmiH304Xtt/cLTps40EusZsU1Uop+v9lTDPxdtzbFmdXfFO3KEnwA==}
+    dependencies:
+      basic-auth: 2.0.1
     dev: false
 
   /express/4.18.2:

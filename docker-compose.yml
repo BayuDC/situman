@@ -9,6 +9,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - REDIS=redis://db:6379
+      - ADMIN=yesiam
     ports:
       - 1112:3000
     restart: always
