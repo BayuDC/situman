@@ -4,7 +4,7 @@ RUN npm i -g pnpm
 
 WORKDIR /app
 
-COPY ./package.json ./pnpm-lock.yaml ./.npmrc ./
+COPY ./package.json ./pnpm-lock.yaml ./
 
 RUN pnpm i --frozen-lockfile
 
