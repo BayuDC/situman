@@ -17,10 +17,10 @@
                             <input type="checkbox" class="toggle" <%= enable ? 'checked' : '' %> id="toggle"  />
                             <input
                                 type="text"
-                                placeholder="Type here"
                                 class="input input-bordered w-full max-w-xs disabled:cursor-text"
-                                value="Hehehe"
+                                value="<%= passwd %>"
                                 disabled
+                                id="input"
                             />
 
                             <button class="btn btn-secondary tex-white" <%= enable ? '' : 'disabled' %> id="button">
@@ -44,6 +44,7 @@
         <script>
             const toggle = document.getElementById('toggle');
             const button = document.getElementById('button');
+            const input = document.getElementById('input');
 
             toggle.addEventListener('input', async () => {
                 await fetch('/status', {
@@ -56,8 +57,17 @@
                     })
                 });
                 button.disabled = !toggle.checked;
+                button.click();
             });
 
+            button.addEventListener('click', async () => {
+                const res = await fetch('/renew', {
+                    method: 'post',
+                });
+                const body = await res.json();
+                
+                input.value = body.passwd;
+            });
         </script>
     </body>
 </html>

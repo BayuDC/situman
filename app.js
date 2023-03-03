@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const redis = require('redis');
+const crypto = require('crypto');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,13 +23,38 @@ app.get('/status', async (req, res) => {
 app.post('/status', async (req, res) => {
     if (req.body?.enable == undefined) return res.status(418).send();
 
+    if (!req.body.enable) {
+        await db.del('passwd');
+    }
+
     const message = await db.set('enable', req.body.enable.toString());
     res.json({ message });
+});
+app.post('/renew', async (req, res) => {
+    const passwd = crypto.randomBytes(4).toString('hex');
+    const message = await db.set('passwd', passwd);
+
+    res.json({ passwd, message });
+});
+app.post('/verify', async (req, res) => {
+    const passwd = await db.get('passwd');
+    if (!passwd) {
+        return res.status(425).send();
+    }
+
+    if (req.body.passwd != passwd) {
+        return res.status(423).send();
+    }
+
+    res.status(204).send();
 });
 
 app.get('/', async (req, res) => {
     const enable = (await db.get('enable')) == 'true';
+    const passwd = await db.get('passwd');
+
     res.render('index', {
+        passwd,
         enable,
     });
 });
