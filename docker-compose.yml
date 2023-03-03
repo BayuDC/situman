@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  ssr:
+  srv:
     container_name: situman-srv
     image: situman-srv
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     environment:
@@ -14,8 +14,8 @@ services:
       - 1112:3000
     restart: always
   db:
-    container_name: redis:6.0-alpine     
-    image: situman-db
+    container_name: situman-db
+    image: redis:6.0-alpine
     volumes:
       - data:/data
 
