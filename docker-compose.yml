@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  ssr:
+    container_name: situman-srv
+    image: situman-srv
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS=redis://db:6379
+    ports:
+      - 1112:3000
+    restart: always
+  db:
+    container_name: redis:6.0-alpine     
+    image: situman-db
+    volumes:
+      - data:/data
+
+volumes:
+  data:
+    driver: local
+    name: situman
+    
+  
