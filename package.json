@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node app",
     "dev:ssr": "nodemon app",
-    "dev:css": "npx tailwindcss -i ./assets/main.css -o ./public/main.css --watch",
-    "build": "npx tailwindcss -i ./assets/main.css -o ./public/main.css"
+    "dev:css": "tailwindcss -i ./assets/main.css -o ./public/main.css --watch",
+    "build": "tailwindcss -i ./assets/main.css -o ./public/main.css"
   },
   "keywords": [],
   "author": "",
