@@ -33,7 +33,7 @@ app.post('/status', auth(), async (req, res) => {
     res.json({ message });
 });
 app.post('/renew', auth(), async (req, res) => {
-    const passwd = crypto.randomBytes(4).toString('hex');
+    const passwd = [0,0,0,0].reduce(acc => acc + Math.floor(Math.random() * 10), '');
     const message = await db.set('passwd', passwd);
 
     res.json({ passwd, message });
