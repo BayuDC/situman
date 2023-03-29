@@ -19,17 +19,25 @@ app.use(express.json());
 
 app.get('/status', async (req, res) => {
     const enable = (await db.get('enable')) == 'true';
+    const ip = await db.get('ip');
 
-    res.json({ enable });
+    res.json({ enable, ip });
 });
-app.post('/status', auth(), async (req, res) => {
+app.post('/enable', auth(), async (req, res) => {
     if (req.body?.enable == undefined) return res.status(418).send();
 
     if (!req.body.enable) {
         await db.del('passwd');
+        await db.del('ip');
     }
 
     const message = await db.set('enable', req.body.enable.toString());
+    res.json({ message });
+});
+app.post('/ip', auth(), async (req, res) => {
+    if (req.body?.ip == undefined) return res.status(418).send();
+
+    const message = await db.set('ip', req.body.ip.toString());
     res.json({ message });
 });
 app.post('/renew', auth(), async (req, res) => {

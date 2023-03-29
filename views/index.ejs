@@ -54,9 +54,9 @@
                                         <span class="label-text">IP Address</span>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="input input-bordered w-full disabled:cursor-text" disabled id="input" />
+                                        <input type="text" class="input input-bordered w-full disabled:cursor-text" id="input-ip" />
 
-                                        <button class="btn btn-secondary tex-white">
+                                        <button class="btn btn-secondary tex-white" id="button-ip">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="24"
@@ -78,11 +78,13 @@
         <script>
             const form = document.getElementById('form');
             const toggle = document.getElementById('toggle');
-            const button = document.getElementById('button-passwd');
-            const input = document.getElementById('input-passwd');
+            const buttonPasswd = document.getElementById('button-passwd');
+            const inputPasswd = document.getElementById('input-passwd');
+            const buttonIp = document.getElementById('button-ip');
+            const inputIp = document.getElementById('input-ip');
 
             toggle.addEventListener('input', async () => {
-                await fetch('/status', {
+                await fetch('/enable', {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json',
@@ -94,20 +96,31 @@
 
                 if (toggle.checked) {
                     form.classList.remove('hidden');
-                    input.value = '';
-                    button.click();
+                    inputPasswd.value = '';
+                    buttonPasswd.click();
                 } else {
                     form.classList.add('hidden');
                 }
             });
 
-            button.addEventListener('click', async () => {
+            buttonPasswd.addEventListener('click', async () => {
                 const res = await fetch('/renew', {
                     method: 'post',
                 });
                 const body = await res.json();
 
-                input.value = body.passwd;
+                inputPasswd.value = body.passwd;
+            });
+            buttonIp.addEventListener('click', async () => {
+                await fetch('/ip', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ip: inputIp.value,
+                    }),
+                });
             });
         </script>
     </body>
