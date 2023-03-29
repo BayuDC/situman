@@ -64,6 +64,6 @@ app.get('/', auth(), async (req, res) => {
 app.listen(port, () => {
     console.log('App running at port', port);
 });
-db.connect().then(() => {
-    console.log('Connected to database');
-});
+// db.connect().then(() => {
+//     console.log('Connected to database');
+// });

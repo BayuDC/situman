@@ -7,58 +7,98 @@
         <link href="/main.css" rel="stylesheet" />
         <title>Sistem Informasi Tunas Aman</title>
     </head>
+
     <body>
         <div class="hero min-h-screen bg-base-200">
             <div class="hero-content flex-col">
                 <h1 class="font-bold text-4xl mb-4 text-center">Sistem Informasi Tunas Aman</h1>
                 <div class="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
                     <div class="card-body">
-                        <div class="flex items-center gap-3">
-                            <input type="checkbox" class="toggle" <%= enable ? 'checked' : '' %> id="toggle"  />
-                            <input
-                                type="text"
-                                class="input input-bordered w-full max-w-xs disabled:cursor-text"
-                                value="<%= passwd %>"
-                                disabled
-                                id="input"
-                            />
+                        <div class="flex justify-center">
+                            <input type="checkbox" class="toggle" checked />
+                        </div>
+                        <div id="form" class="<%= enable ? '' : 'hidden' %>">
+                            <div class="flex items-center gap-3">
+                                <div class="form-control w-full">
+                                    <label class="label">
+                                        <span class="label-text">Password</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="input input-bordered w-full disabled:cursor-text"
+                                            disabled
+                                            id="input-passwd"
+                                            value="<%= passwd %>"
+                                        />
 
-                            <button class="btn btn-secondary tex-white" <%= enable ? '' : 'disabled' %> id="button">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    style="fill: rgba(255, 255, 255, 1)"
-                                >
-                                    <path
-                                        d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787 5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0 4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501 6.921 6.921 0 0 0-1.315-.408 7.079 7.079 0 0 0-2.819 0 6.94 6.94 0 0 0-1.316.409 7.04 7.04 0 0 0-3.08 2.534 6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4 4-4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138 4.943 4.943 0 0 1-1.787.752 5.073 5.073 0 0 1-2.017 0 4.956 4.956 0 0 1-1.787-.752 5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0 7.031 7.031 0 0 0 4.395-2.945 6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4-4 4z"
-                                    ></path>
-                                </svg>
-                            </button>
+                                        <button class="btn btn-secondary tex-white" id="button-passwd">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                style="fill: rgba(255, 255, 255, 1)"
+                                            >
+                                                <path
+                                                    d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787 5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0 4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501 6.921 6.921 0 0 0-1.315-.408 7.079 7.079 0 0 0-2.819 0 6.94 6.94 0 0 0-1.316.409 7.04 7.04 0 0 0-3.08 2.534 6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4 4-4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138 4.943 4.943 0 0 1-1.787.752 5.073 5.073 0 0 1-2.017 0 4.956 4.956 0 0 1-1.787-.752 5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0 7.031 7.031 0 0 0 4.395-2.945 6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4-4 4z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="form-control w-full">
+                                    <label class="label">
+                                        <span class="label-text">IP Address</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="input input-bordered w-full disabled:cursor-text" disabled id="input" />
+
+                                        <button class="btn btn-secondary tex-white">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                style="fill: rgba(255, 255, 255, 1)"
+                                            >
+                                                <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <script>
+            const form = document.getElementById('form');
             const toggle = document.getElementById('toggle');
-            const button = document.getElementById('button');
-            const input = document.getElementById('input');
+            const button = document.getElementById('button-passwd');
+            const input = document.getElementById('input-passwd');
 
             toggle.addEventListener('input', async () => {
                 await fetch('/status', {
                     method: 'post',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        enable: toggle.checked
-                    })
+                        enable: toggle.checked,
+                    }),
                 });
-                button.disabled = !toggle.checked;
-                input.value = '';
-                button.click();
+
+                if (toggle.checked) {
+                    form.classList.remove('hidden');
+                    input.value = '';
+                    button.click();
+                } else {
+                    form.classList.add('hidden');
+                }
             });
 
             button.addEventListener('click', async () => {
@@ -66,7 +106,7 @@
                     method: 'post',
                 });
                 const body = await res.json();
-                
+
                 input.value = body.passwd;
             });
         </script>
