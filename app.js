@@ -1,7 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const redis = require('redis');
-const crypto = require('crypto');
 
 const auth = require('./handlers/auth');
 
@@ -62,10 +61,12 @@ app.post('/verify', async (req, res) => {
 app.get('/', auth(), async (req, res) => {
     const enable = (await db.get('enable')) == 'true';
     const passwd = await db.get('passwd');
+    const ip = await db.get('ip');
 
     res.render('index', {
         passwd,
         enable,
+        ip,
     });
 });
 
