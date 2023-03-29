@@ -33,7 +33,7 @@ app.post('/status', auth(), async (req, res) => {
     res.json({ message });
 });
 app.post('/renew', auth(), async (req, res) => {
-    const passwd = crypto.randomBytes(4).toString('hex');
+    const passwd = [0, 0, 0, 0].reduce(acc => acc + Math.floor(Math.random() * 10), '');
     const message = await db.set('passwd', passwd);
 
     res.json({ passwd, message });
@@ -64,6 +64,6 @@ app.get('/', auth(), async (req, res) => {
 app.listen(port, () => {
     console.log('App running at port', port);
 });
-// db.connect().then(() => {
-//     console.log('Connected to database');
-// });
+db.connect().then(() => {
+    console.log('Connected to database');
+});
