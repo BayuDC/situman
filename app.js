@@ -27,7 +27,6 @@ app.post('/enable', auth(), async (req, res) => {
 
     if (!req.body.enable) {
         await db.del('passwd');
-        await db.del('ip');
     }
 
     const message = await db.set('enable', req.body.enable.toString());
