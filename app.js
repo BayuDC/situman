@@ -47,7 +47,7 @@ app.post('/renew', auth(), async (req, res) => {
 app.post('/verify', async (req, res) => {
     const passwd = await db.get('passwd');
     if (!passwd) {
-        return res.status(425).send();
+        return res.status(204).send();
     }
 
     if (req.body.passwd != passwd) {
