@@ -14,4 +14,4 @@ RUN pnpm build
 
 RUN pnpm prune --prod
 
-CMD ["pm2-runtime", "-i", "4", "app"]
+CMD ["pm2-runtime", "-i", "4", "app.js"]
